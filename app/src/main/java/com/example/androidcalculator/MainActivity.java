@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView display;
 
-    boolean add, sub, mul, div, fin;
+    boolean add, sub, mul, div, fin, firstAT, firstST;
 
     double val1, val2;
 
@@ -51,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
         mul = false;
         div = false;
         fin = false;
+        //firstST = true;
+        //firstAT = true;
 
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("1");
                     fin = false;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("2");
                     fin = false;
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("3");
                     fin = false;
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("4");
                     fin = false;
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("5");
                     fin = false;
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("6");
                     fin = false;
@@ -146,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("7");
                     fin = false;
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("8");
                     fin = false;
@@ -176,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("9");
                     fin = false;
@@ -190,18 +192,92 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                val1 = Float.parseFloat(display.getText().toString());
-                add = true;
-                display.setText("");
+
+                String str = display.getText().toString();
+                char target = '.';
+                int counter = 0;
+
+                int len = str.length();
+
+                for(int i = 0; i < len; i++) {
+
+                    if(str.charAt(i) == target) {
+
+                        counter++;
+
+                    }
+
+                }
+
+                if (str.equals("") || str == null) {
+
+                    if (fin == true) {
+
+                        fin = false;
+
+                    }
+
+                    display.setText(display.getText() + "+");
+                    //firstAT = false;
+
+                }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+                    display.setText("Please enter in a valid number first.");
+
+                }   else{
+
+                    val1 = Float.parseFloat(display.getText().toString());
+                    add = true;
+                    display.setText("");
+
+                }
+
+
             }
 
         });
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                val1 = Float.parseFloat(display.getText().toString());
-                sub = true;
-                display.setText("");
+
+                String str = display.getText().toString();
+                char target = '.';
+                int counter = 0;
+
+                int len = str.length();
+
+                for(int i = 0; i < len; i++) {
+
+                    if(str.charAt(i) == target) {
+
+                        counter++;
+
+                    }
+
+                }
+
+                if (str.equals("") || str == null) {
+
+                    if (fin == true) {
+
+                        fin = false;
+
+                    }
+
+                    display.setText(display.getText() + "-");
+                    //firstST = false;
+
+                }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+                    display.setText("Please enter in a valid number first.");
+
+                }   else {
+
+                    val1 = Float.parseFloat(display.getText().toString());
+                    sub = true;
+                    display.setText("");
+
+                }
             }
         });
 
@@ -209,12 +285,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
+                char target = '.';
+                int counter = 0;
+
                 int len = str.length();
 
-                if (len == 0 || str.equals("Please enter in a number first.")) {
+                for(int i = 0; i < len; i++) {
+
+                    if(str.charAt(i) == target) {
+
+                        counter++;
+
+                    }
+
+                }
+
+                if (len == 0 || str.equals(".") || str.equals("Please enter in a valid number first.") || counter > 1) {
 
                     //mul = false;
-                    display.setText("Please enter in a number first.");
+                    display.setText("Please enter in a valid number first.");
 
                 }   else {
                     val1 = Float.parseFloat(display.getText().toString());
@@ -231,12 +320,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
+                char target = '.';
+                int counter = 0;
+
                 int len = str.length();
 
-                if (len == 0 || str.equals("Please enter in a number first.")) {
+                for(int i = 0; i < len; i++) {
+
+                    if(str.charAt(i) == target) {
+
+                        counter++;
+
+                    }
+
+                }
+
+                if (len == 0 || str.equals("Please enter in a valid number first.") || str.equals(".") || counter > 1) {
 
                     //div = false;
-                    display.setText("Please enter in a number first.");
+                    display.setText("Please enter in a valid number first.");
 
                 }   else {
                     val1 = Float.parseFloat(display.getText().toString());
@@ -252,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText(".");
                     fin = false;
@@ -267,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = display.getText().toString();
 
-                if (fin == true || str.equals("Please enter in a number first.")) {
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
 
                     display.setText("0");
                     fin = false;
@@ -280,8 +382,19 @@ public class MainActivity extends AppCompatActivity {
 
         btnClr.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //val1 = 0;
-                //val2 = 0;
+                val1 = 0;
+                val2 = 0;
+
+                fin = true;
+                add = false;
+                sub = false;
+                div = false;
+                mul = false;
+                fin = false;
+
+                //firstAT = true;
+                //firstST = true;
+
                 display.setText("");
             }
         });
@@ -301,14 +414,40 @@ public class MainActivity extends AppCompatActivity {
                 //val2 = Float.parseFloat(parts[1]);
 
                 String str = display.getText().toString();
+                char target = '.';
+                int counter = 0;
 
                 int len = str.length();
 
-                if (len == 0 || str.equals("Please enter in a number first.")) {
+                for(int i = 0; i < len; i++) {
 
-                    display.setText("Please enter in a number first.");
+                    if(str.charAt(i) == target) {
+
+                        counter++;
+
+                    }
 
                 }
+
+                if (len == 0 || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+                    display.setText("Please enter in a valid number first.");
+
+                }
+
+                if (str.equals(".")) {
+
+                    display.setText("0");
+
+                }
+
+                //float aNum = Float.parseFloat(display.getText().toString());
+
+                //if (((aNum < 1 && aNum > 0) || (aNum > -1 && aNum < 0)) && (add == false) && (sub == false) && (div = false) && (mul == false) && (aNum != null)) {
+
+                //    display.setText(String.valueOf(aNum));
+
+                //}
 
                 float res;
 
@@ -407,6 +546,8 @@ public class MainActivity extends AppCompatActivity {
                 sub = false;
                 div = false;
                 mul = false;
+                //firstAT = true;
+                //firstST = true;
 
             }
         });
