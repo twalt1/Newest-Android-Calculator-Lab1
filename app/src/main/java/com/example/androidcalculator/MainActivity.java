@@ -419,9 +419,9 @@ public class MainActivity extends AppCompatActivity {
 
                 int len = str.length();
 
-                for(int i = 0; i < len; i++) {
+                for (int i = 0; i < len; i++) {
 
-                    if(str.charAt(i) == target) {
+                    if (str.charAt(i) == target) {
 
                         counter++;
 
@@ -450,106 +450,111 @@ public class MainActivity extends AppCompatActivity {
                 //}
 
                 float res;
+                if (val2 == 0) {
+                    display.setText("Cannot divide by 0");
+                }
 
-                if (add == true){
+                if (div == true && val2 > 0) {
+                    if (add == true) {
 
-                    val2 = Float.parseFloat(display.getText().toString());
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                    res = (float)(val1 + val2);
+                        res = (float) (val1 + val2);
 
-                    if(((int)res) == (res)) {
+                        if (((int) res) == (res)) {
 
-                        display.setText(Integer.toString((int)res));
-                        //val1 = 0;
-                        //val2 = 0;
+                            display.setText(Integer.toString((int) res));
+                            //val1 = 0;
+                            //val2 = 0;
 
-                    }   else {
+                        } else {
 
-                        display.setText(String.format("%.7g%n",res));
-                        //val1 = 0;
-                        //val2 = 0;
+                            display.setText(String.format("%.7g%n", res));
+                            //val1 = 0;
+                            //val2 = 0;
+
+                        }
 
                     }
 
-                }
+                    if (sub == true) {
 
-                if (sub == true){
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                    val2 = Float.parseFloat(display.getText().toString());
+                        res = (float) (val1 - val2);
 
-                    res = (float)(val1 - val2);
+                        if (((int) res) == (res)) {
 
-                    if(((int)res) == (res)) {
+                            display.setText(Integer.toString((int) res));
+                            //val1 = 0;
+                            //val2 = 0;
 
-                        display.setText(Integer.toString((int)res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        } else {
 
-                    }   else {
+                            display.setText(String.format("%.7g%n", res));
+                            //val1 = 0;
+                            //val2 = 0;
 
-                        display.setText(String.format("%.7g%n",res));
-                        //val1 = 0;
-                        //val2 = 0;
-
-                    }
-
-                }
-
-                if (mul == true){
-
-                    val2 = Float.parseFloat(display.getText().toString());
-
-                    res = (float)(val1 * val2);
-
-                    if(((int)res) == (res)) {
-
-                        display.setText(Integer.toString((int)res));
-                        //val1 = 0;
-                        //val2 = 0;
-
-                    }   else {
-
-                        display.setText(String.format("%.7g%n",res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        }
 
                     }
 
-                }
+                    if (mul == true) {
 
-                if (div == true){
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                    val2 = Float.parseFloat(display.getText().toString());
+                        res = (float) (val1 * val2);
 
-                    res = (float)(val1 / val2);
+                        if (((int) res) == (res)) {
 
-                    if(((int)res) == (res)) {
+                            display.setText(Integer.toString((int) res));
+                            //val1 = 0;
+                            //val2 = 0;
 
-                        display.setText(Integer.toString((int)res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        } else {
 
-                    }   else {
+                            display.setText(String.format("%.7g%n", res));
+                            //val1 = 0;
+                            //val2 = 0;
 
-                        display.setText(String.format("%.7g%n",res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        }
 
                     }
 
+                    if (div == true) {
+
+                        val2 = Float.parseFloat(display.getText().toString());
+
+                        res = (float) (val1 / val2);
+
+                        if (((int) res) == (res)) {
+
+                            display.setText(Integer.toString((int) res));
+                            //val1 = 0;
+                            //val2 = 0;
+
+                        } else {
+
+                            display.setText(String.format("%.7g%n", res));
+                            //val1 = 0;
+                            //val2 = 0;
+
+                        }
+
+                    }
+
+                    val1 = 0;
+                    val2 = 0;
+                    fin = true;
+                    add = false;
+                    sub = false;
+                    div = false;
+                    mul = false;
+                    //firstAT = true;
+                    //firstST = true;
+
                 }
-
-                val1 = 0;
-                val2 = 0;
-                fin = true;
-                add = false;
-                sub = false;
-                div = false;
-                mul = false;
-                //firstAT = true;
-                //firstST = true;
-
-            }
+            };
         });
 
     }
