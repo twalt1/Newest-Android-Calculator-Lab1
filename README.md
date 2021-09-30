@@ -2,4 +2,5 @@
 Newest version of Android Calculator (Lab1) with EkkoL's changes.
 
 EDGE CASE:
-  1. Dividing by 0 prints infinity.
+  1. Dividing by 0 prints out an error, "cannot divide by 0".
+  2. 
