@@ -451,7 +451,6 @@ public class MainActivity extends AppCompatActivity {
 
                 float res;
 
-                if (div == true && val2 > 0) {
                     if (add == true) {
 
                         val2 = Float.parseFloat(display.getText().toString());
@@ -555,7 +554,6 @@ public class MainActivity extends AppCompatActivity {
                     //firstST = true;
 
                 }
-            };
         });
     }
 }
