@@ -450,9 +450,6 @@ public class MainActivity extends AppCompatActivity {
                 //}
 
                 float res;
-                if (val2 == 0) {
-                    display.setText("Cannot divide by 0");
-                }
 
                 if (div == true && val2 > 0) {
                     if (add == true) {
@@ -527,6 +524,10 @@ public class MainActivity extends AppCompatActivity {
 
                         res = (float) (val1 / val2);
 
+                        if (val2 == 0) {
+                            display.setText("Cannot divide by 0");
+                        }
+
                         if (((int) res) == (res)) {
 
                             display.setText(Integer.toString((int) res));
@@ -556,6 +557,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
         });
-
     }
 }
