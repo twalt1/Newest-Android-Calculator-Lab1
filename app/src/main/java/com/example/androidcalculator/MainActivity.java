@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         mul = false;
         div = false;
         fin = false;
+
         //firstST = true;
         //firstAT = true;
 
@@ -431,12 +432,13 @@ public class MainActivity extends AppCompatActivity {
                 //}
 
                 float res;
+                char operator;
 
                     if (add == true) {
-
+                        operator = '+';
                         val2 = Float.parseFloat(display.getText().toString());
 
-                        res = (float) (val1 + val2);
+                        res = (float) mathEquals(val1, val2, operator);
 
                         if (((int) res) == (res)) {
 
@@ -455,10 +457,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (sub == true) {
-
+                        operator = '-';
                         val2 = Float.parseFloat(display.getText().toString());
 
-                        res = (float) (val1 - val2);
+                        res = (float) mathEquals(val1, val2, operator);
 
                         if (((int) res) == (res)) {
 
@@ -477,10 +479,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (mul == true) {
-
+                        operator = '*';
                         val2 = Float.parseFloat(display.getText().toString());
 
-                        res = (float) (val1 * val2);
+                        res = (float) mathEquals(val1, val2, operator);
 
                         if (((int) res) == (res)) {
 
@@ -499,10 +501,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (div == true) {
-
+                        operator = '/';
                         val2 = Float.parseFloat(display.getText().toString());
 
-                        res = (float) (val1 / val2);
+                        res = (float) mathEquals(val1, val2, operator);
 
                         if (val2 == 0) {
                             display.setText("Cannot divide by 0");
@@ -663,5 +665,19 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return val1;
+    }
+
+    protected double mathEquals(double val1, double val2, char operator){
+        double res = 0;
+        if (operator == '+'){
+            res = val1 + val2;
+        } else if (operator == '-'){
+            res = val1-val2;
+        } else if (operator == '*'){
+            res = val1*val2;
+        } else if (operator == '/'){
+            res = val1/val2;
+        }
+        return res;
     }
 }
