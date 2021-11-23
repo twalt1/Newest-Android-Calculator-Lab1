@@ -1,3 +1,19 @@
+/**
+ * This class represents the Main Activity file for our (Group 12)'s Simple Calculator program
+ * Version 1.02 update:
+ * 1. Added Junit and Javadoc
+ * 2. Added methods: addition, subtraction, multiplication, and division.
+ * javac -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity.java
+ * java -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity
+ * @author Quoc Dat Phung 300164087
+ * @author Jonathan Grobben 300190246
+ * @author Tuna Bolukbasi 300185784
+ * @author Zehan Li 300130533
+ * @author Timothy Walters 300113350
+ * @version 1.02 (November 22, 2021)
+ * @since version 1.01
+ */
+
 package com.example.androidcalculator;
 
 import android.os.Bundle;
@@ -7,8 +23,15 @@ import android.widget.Button;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
-//testing commenting. - tuna
+/**
+ * The Main Activity class
+ */
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Attributes:
+     * Buttons, textview (for display)
+     * Boolean and Double values to calculate logic
+     */
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
     btnEql, btnDec, btnAdd, btnSub, btnDiv;
@@ -19,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     double val1, val2;
 
+    /**
+     * The onCreate method will include all the code for the calculator app.
+     * @param savedInstanceState default parameter of onCreate method in Android Studio
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +81,14 @@ public class MainActivity extends AppCompatActivity {
         //firstST = true;
         //firstAT = true;
 
+        /**
+         * OnClickListener method to register user's input when the button "1" is clicked on.
+         */
         btn1.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "1".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -69,7 +103,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "2" is clicked on.
+         */
         btn2.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "2".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -84,7 +125,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "3" is clicked on.
+         */
         btn3.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "3".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -99,7 +147,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "4" is clicked on.
+         */
         btn4.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "4".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -114,7 +169,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "5" is clicked on.
+         */
         btn5.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "5".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -129,7 +191,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "6" is clicked on.
+         */
         btn6.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "6".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -144,7 +213,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "7" is clicked on.
+         */
         btn7.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "7".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -159,7 +235,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "8" is clicked on.
+         */
         btn8.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "8".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -174,7 +257,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "9" is clicked on.
+         */
         btn9.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for button "9".
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -190,7 +280,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "add" button is clicked on.
+         */
         btnAdd.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "add" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 val1 = MainActivity.this.addition();
                 val1 = Float.parseFloat(display.getText().toString());
@@ -200,7 +297,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        /**
+         * OnClickListener method to register user's input when the "subtraction" button is clicked on.
+         */
         btnSub.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "subtraction" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 val1 = MainActivity.this.subtraction();
                 val1 = Float.parseFloat(display.getText().toString());
