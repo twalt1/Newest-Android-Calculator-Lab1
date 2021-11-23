@@ -192,26 +192,38 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                MainActivity.this.addition();
+                val1 = MainActivity.this.addition();
+                val1 = Float.parseFloat(display.getText().toString());
+                add = true;
+                display.setText("");
             }
 
         });
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                MainActivity.this.subtraction();
+                val1 = MainActivity.this.subtraction();
+                val1 = Float.parseFloat(display.getText().toString());
+                sub = true;
+                display.setText("");
             }
         });
 
         btnMul.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                MainActivity.this.multiplication();
+                val1 = MainActivity.this.multiplication();
+                val1 = Float.parseFloat(display.getText().toString());
+                mul = true;
+                display.setText("");
             }
         });
 
         btnDiv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                MainActivity.this.division();
+                val1 = MainActivity.this.division();
+                val1 = Float.parseFloat(display.getText().toString());
+                div = true;
+                display.setText("");
             }
         });
 
@@ -422,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void addition(){
+    protected double addition(){
         String str = display.getText().toString();
         char target = '.';
         int counter = 0;
@@ -454,16 +466,12 @@ public class MainActivity extends AppCompatActivity {
 
             display.setText("Please enter in a valid number first.");
 
-        }   else{
-
-            val1 = Float.parseFloat(display.getText().toString());
-            add = true;
-            display.setText("");
-
         }
+
+        return val1;
     }
 
-    protected void subtraction(){
+    protected double subtraction(){
         String str = display.getText().toString();
         char target = '.';
         int counter = 0;
@@ -495,16 +503,11 @@ public class MainActivity extends AppCompatActivity {
 
             display.setText("Please enter in a valid number first.");
 
-        }   else {
-
-            val1 = Float.parseFloat(display.getText().toString());
-            sub = true;
-            display.setText("");
-
         }
+        return val1;
     }
 
-    protected void multiplication(){
+    protected double multiplication(){
         String str = display.getText().toString();
 
         char target = '.';
@@ -527,16 +530,11 @@ public class MainActivity extends AppCompatActivity {
             //mul = false;
             display.setText("Please enter in a valid number first.");
 
-        }   else {
-            val1 = Float.parseFloat(display.getText().toString());
-
-            mul = true;
-            display.setText("");
-
         }
+        return val1;
     }
 
-    protected void division(){
+    protected double division(){
         String str = display.getText().toString();
 
         char target = '.';
@@ -559,12 +557,7 @@ public class MainActivity extends AppCompatActivity {
             //div = false;
             display.setText("Please enter in a valid number first.");
 
-        }   else {
-            val1 = Float.parseFloat(display.getText().toString());
-
-            div = true;
-            display.setText("");
-
         }
+        return val1;
     }
 }
