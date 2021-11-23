@@ -5,11 +5,7 @@
  * 2. Added methods: addition, subtraction, multiplication, and division.
  * javac -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity.java
  * java -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity
- * @author Quoc Dat Phung 300164087
- * @author Jonathan Grobben 300190246
- * @author Tuna Bolukbasi 300185784
- * @author Zehan Li 300130533
- * @author Timothy Walters 300113350
+ * @author Quoc Dat Phung 300164087, Jonathan Grobben 300190246, Tuna Bolukbasi 300185784, Zehan Li 300130533, Timothy Walters 300113350
  * @version 1.02 (November 22, 2021)
  * @since version 1.01
  */
@@ -35,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
     btnEql, btnDec, btnAdd, btnSub, btnDiv;
-
     TextView display;
-
     boolean add, sub, mul, div, fin, firstAT, firstST;
-
     double val1, val2;
 
     /**
