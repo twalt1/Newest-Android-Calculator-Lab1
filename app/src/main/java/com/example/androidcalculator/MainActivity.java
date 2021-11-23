@@ -192,161 +192,26 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                String str = display.getText().toString();
-                char target = '.';
-                int counter = 0;
-
-                int len = str.length();
-
-                for(int i = 0; i < len; i++) {
-
-                    if(str.charAt(i) == target) {
-
-                        counter++;
-
-                    }
-
-                }
-
-                if (str.equals("") || str == null) {
-
-                    if (fin == true) {
-
-                        fin = false;
-
-                    }
-
-                    display.setText(display.getText() + "+");
-                    //firstAT = false;
-
-                }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
-
-                    display.setText("Please enter in a valid number first.");
-
-                }   else{
-
-                    val1 = Float.parseFloat(display.getText().toString());
-                    add = true;
-                    display.setText("");
-
-                }
-
-
+                MainActivity.this.addition();
             }
 
         });
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                String str = display.getText().toString();
-                char target = '.';
-                int counter = 0;
-
-                int len = str.length();
-
-                for(int i = 0; i < len; i++) {
-
-                    if(str.charAt(i) == target) {
-
-                        counter++;
-
-                    }
-
-                }
-
-                if (str.equals("") || str == null) {
-
-                    if (fin == true) {
-
-                        fin = false;
-
-                    }
-
-                    display.setText(display.getText() + "-");
-                    //firstST = false;
-
-                }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
-
-                    display.setText("Please enter in a valid number first.");
-
-                }   else {
-
-                    val1 = Float.parseFloat(display.getText().toString());
-                    sub = true;
-                    display.setText("");
-
-                }
+                MainActivity.this.subtraction();
             }
         });
 
         btnMul.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String str = display.getText().toString();
-
-                char target = '.';
-                int counter = 0;
-
-                int len = str.length();
-
-                for(int i = 0; i < len; i++) {
-
-                    if(str.charAt(i) == target) {
-
-                        counter++;
-
-                    }
-
-                }
-
-                if (len == 0 || str.equals(".") || str.equals("Please enter in a valid number first.") || counter > 1) {
-
-                    //mul = false;
-                    display.setText("Please enter in a valid number first.");
-
-                }   else {
-                    val1 = Float.parseFloat(display.getText().toString());
-
-                    mul = true;
-                    display.setText("");
-
-                }
-
+                MainActivity.this.multiplication();
             }
         });
 
         btnDiv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String str = display.getText().toString();
-
-                char target = '.';
-                int counter = 0;
-
-                int len = str.length();
-
-                for(int i = 0; i < len; i++) {
-
-                    if(str.charAt(i) == target) {
-
-                        counter++;
-
-                    }
-
-                }
-
-                if (len == 0 || str.equals("Please enter in a valid number first.") || str.equals(".") || counter > 1) {
-
-                    //div = false;
-                    display.setText("Please enter in a valid number first.");
-
-                }   else {
-                    val1 = Float.parseFloat(display.getText().toString());
-
-                    div = true;
-                    display.setText("");
-
-                }
+                MainActivity.this.division();
             }
         });
 
@@ -555,5 +420,151 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         });
+    }
+
+    protected void addition(){
+        String str = display.getText().toString();
+        char target = '.';
+        int counter = 0;
+
+        int len = str.length();
+
+        for(int i = 0; i < len; i++) {
+
+            if(str.charAt(i) == target) {
+
+                counter++;
+
+            }
+
+        }
+
+        if (str.equals("") || str == null) {
+
+            if (fin == true) {
+
+                fin = false;
+
+            }
+
+            display.setText(display.getText() + "+");
+            //firstAT = false;
+
+        }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+            display.setText("Please enter in a valid number first.");
+
+        }   else{
+
+            val1 = Float.parseFloat(display.getText().toString());
+            add = true;
+            display.setText("");
+
+        }
+    }
+
+    protected void subtraction(){
+        String str = display.getText().toString();
+        char target = '.';
+        int counter = 0;
+
+        int len = str.length();
+
+        for(int i = 0; i < len; i++) {
+
+            if(str.charAt(i) == target) {
+
+                counter++;
+
+            }
+
+        }
+
+        if (str.equals("") || str == null) {
+
+            if (fin == true) {
+
+                fin = false;
+
+            }
+
+            display.setText(display.getText() + "-");
+            //firstST = false;
+
+        }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+            display.setText("Please enter in a valid number first.");
+
+        }   else {
+
+            val1 = Float.parseFloat(display.getText().toString());
+            sub = true;
+            display.setText("");
+
+        }
+    }
+
+    protected void multiplication(){
+        String str = display.getText().toString();
+
+        char target = '.';
+        int counter = 0;
+
+        int len = str.length();
+
+        for(int i = 0; i < len; i++) {
+
+            if(str.charAt(i) == target) {
+
+                counter++;
+
+            }
+
+        }
+
+        if (len == 0 || str.equals(".") || str.equals("Please enter in a valid number first.") || counter > 1) {
+
+            //mul = false;
+            display.setText("Please enter in a valid number first.");
+
+        }   else {
+            val1 = Float.parseFloat(display.getText().toString());
+
+            mul = true;
+            display.setText("");
+
+        }
+    }
+
+    protected void division(){
+        String str = display.getText().toString();
+
+        char target = '.';
+        int counter = 0;
+
+        int len = str.length();
+
+        for(int i = 0; i < len; i++) {
+
+            if(str.charAt(i) == target) {
+
+                counter++;
+
+            }
+
+        }
+
+        if (len == 0 || str.equals("Please enter in a valid number first.") || str.equals(".") || counter > 1) {
+
+            //div = false;
+            display.setText("Please enter in a valid number first.");
+
+        }   else {
+            val1 = Float.parseFloat(display.getText().toString());
+
+            div = true;
+            display.setText("");
+
+        }
     }
 }
