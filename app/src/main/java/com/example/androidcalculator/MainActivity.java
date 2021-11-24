@@ -14,10 +14,10 @@ package com.example.androidcalculator;
 
 import android.os.Bundle;
 import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * The Main Activity class
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
      */
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
-    btnEql, btnDec, btnAdd, btnSub, btnDiv;
+            btnEql, btnDec, btnAdd, btnSub, btnDiv;
     static TextView display;
     boolean add, sub, mul, div, fin, firstAT, firstST;
     double val1, val2;
@@ -332,22 +332,6 @@ public class MainActivity extends AppCompatActivity {
              * @param v Default view in Android Studio for the onClick method.
              */
             public void onClick(View v) {
-                val1 = MainActivity.this.division();
-                val1 = Float.parseFloat(display.getText().toString());
-                div = true;
-                display.setText("");
-            }
-        });
-
-        /**
-         * OnClickListener method to register user's input when the "decimal" button is clicked on.
-         */
-        btnDec.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "decimal" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
-            public void onClick(View v) {
                 if(display.getText().toString() != null) {
 
                     val2 = Float.parseFloat(display.getText().toString());
@@ -363,6 +347,28 @@ public class MainActivity extends AppCompatActivity {
 
                     display.setText("Please enter a number.");
 
+                }
+            }
+        });
+
+        /**
+         * OnClickListener method to register user's input when the "decimal" button is clicked on.
+         */
+        btnDec.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "decimal" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
+            public void onClick(View v) {
+                String str = display.getText().toString();
+
+                if (fin == true || str.equals("Please enter in a valid number first.")) {
+
+                    display.setText(".");
+                    fin = false;
+
+                }   else {
+                    display.setText(display.getText() + ".");
                 }
             }
         });
@@ -475,109 +481,109 @@ public class MainActivity extends AppCompatActivity {
                 float res;
                 char operator;
 
-                    if (add == true) {
-                        operator = '+';
-                        val2 = Float.parseFloat(display.getText().toString());
+                if (add == true) {
+                    operator = '+';
+                    val2 = Float.parseFloat(display.getText().toString());
 
-                        res = (float) mathEquals(val1, val2, operator);
+                    res = (float) mathEquals(val1, val2, operator);
 
-                        if (((int) res) == (res)) {
+                    if (((int) res) == (res)) {
 
-                            display.setText(Integer.toString((int) res));
-                            //val1 = 0;
-                            //val2 = 0;
+                        display.setText(Integer.toString((int) res));
+                        //val1 = 0;
+                        //val2 = 0;
 
-                        } else {
+                    } else {
 
-                            display.setText(String.format("%.7g%n", res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        }
+                        display.setText(String.format("%.7g%n", res));
+                        //val1 = 0;
+                        //val2 = 0;
 
                     }
-
-                    if (sub == true) {
-                        operator = '-';
-                        val2 = Float.parseFloat(display.getText().toString());
-
-                        res = (float) mathEquals(val1, val2, operator);
-
-                        if (((int) res) == (res)) {
-
-                            display.setText(Integer.toString((int) res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        } else {
-
-                            display.setText(String.format("%.7g%n", res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        }
-
-                    }
-
-                    if (mul == true) {
-                        operator = '*';
-                        val2 = Float.parseFloat(display.getText().toString());
-
-                        res = (float) mathEquals(val1, val2, operator);
-
-                        if (((int) res) == (res)) {
-
-                            display.setText(Integer.toString((int) res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        } else {
-
-                            display.setText(String.format("%.7g%n", res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        }
-
-                    }
-
-                    if (div == true) {
-                        operator = '/';
-                        val2 = Float.parseFloat(display.getText().toString());
-
-                        res = (float) mathEquals(val1, val2, operator);
-
-                        if (val2 == 0) {
-                            display.setText("Cannot divide by 0");
-                        }
-
-                        if (((int) res) == (res)) {
-
-                            display.setText(Integer.toString((int) res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        } else {
-
-                            display.setText(String.format("%.7g%n", res));
-                            //val1 = 0;
-                            //val2 = 0;
-
-                        }
-
-                    }
-
-                    val1 = 0;
-                    val2 = 0;
-                    fin = true;
-                    add = false;
-                    sub = false;
-                    div = false;
-                    mul = false;
-                    //firstAT = true;
-                    //firstST = true;
 
                 }
+
+                if (sub == true) {
+                    operator = '-';
+                    val2 = Float.parseFloat(display.getText().toString());
+
+                    res = (float) mathEquals(val1, val2, operator);
+
+                    if (((int) res) == (res)) {
+
+                        display.setText(Integer.toString((int) res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    } else {
+
+                        display.setText(String.format("%.7g%n", res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    }
+
+                }
+
+                if (mul == true) {
+                    operator = '*';
+                    val2 = Float.parseFloat(display.getText().toString());
+
+                    res = (float) mathEquals(val1, val2, operator);
+
+                    if (((int) res) == (res)) {
+
+                        display.setText(Integer.toString((int) res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    } else {
+
+                        display.setText(String.format("%.7g%n", res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    }
+
+                }
+
+                if (div == true) {
+                    operator = '/';
+                    val2 = Float.parseFloat(display.getText().toString());
+
+                    res = (float) mathEquals(val1, val2, operator);
+
+                    if (val2 == 0) {
+                        display.setText("Cannot divide by 0");
+                    }
+
+                    if (((int) res) == (res)) {
+
+                        display.setText(Integer.toString((int) res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    } else {
+
+                        display.setText(String.format("%.7g%n", res));
+                        //val1 = 0;
+                        //val2 = 0;
+
+                    }
+
+                }
+
+                val1 = 0;
+                val2 = 0;
+                fin = true;
+                add = false;
+                sub = false;
+                div = false;
+                mul = false;
+                //firstAT = true;
+                //firstST = true;
+
+            }
         });
     }
 
