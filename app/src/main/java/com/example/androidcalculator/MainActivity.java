@@ -725,7 +725,7 @@ public class MainActivity extends AppCompatActivity {
      * @param operator identifies the operation to be performed
      * @return the resulting value as a double
      */
-    protected double mathEquals(double val1, double val2, char operator){
+    protected static double mathEquals(double val1, double val2, char operator){
         double res = 0;
         if (operator == '+'){
             res = val1 + val2;
