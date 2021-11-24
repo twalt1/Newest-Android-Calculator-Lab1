@@ -1,11 +1,25 @@
+/**
+ * This class reprsents the JUnit test for the subtraction method in
+ * our android studio's calculator app.
+ * @author Jonathan Grobben 300190246 Quoc Dat Phung 300164087
+ * @version 1.01 (November 14, 2021)
+ *
+ */
+
 package com.example.androidcalculator;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * The Main Activity Test class
+ */
 public class MainActivityTest {
 
+    /**
+     * This Junit method tests the subtraction logic in the mathEquals() method.
+     */
     @Test
     public void test_Subtraction() {
         double val1 = 7.0;
