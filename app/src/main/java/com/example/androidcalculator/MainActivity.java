@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
     btnEql, btnDec, btnAdd, btnSub, btnDiv;
-    TextView display;
+    static TextView display;
     boolean add, sub, mul, div, fin, firstAT, firstST;
     double val1, val2;
 
@@ -348,15 +348,21 @@ public class MainActivity extends AppCompatActivity {
              * @param v Default view in Android Studio for the onClick method.
              */
             public void onClick(View v) {
-                String str = display.getText().toString();
+                if(display.getText().toString() != null) {
 
-                if (fin == true || str.equals("Please enter in a valid number first.")) {
+                    val2 = Float.parseFloat(display.getText().toString());
 
-                    display.setText(".");
-                    fin = false;
+                    String toPrint = toDivision(val1, val2);
 
+                    if (toPrint != null) {
+
+                        display.setText(toPrint);
+
+                    }
                 }   else {
-                    display.setText(display.getText() + ".");
+
+                    display.setText("Please enter a number.");
+
                 }
             }
         });
@@ -687,21 +693,23 @@ public class MainActivity extends AppCompatActivity {
         return val1;
     }
 
-    /**
-     * division method
-     * @return the result as a double
+    /** To check whether the division is performable
+     *
+     * @param str The input collected from the EditText
+     * @return a String that represents the number that is going to be calculated
      */
-    protected double division(){
-        String str = display.getText().toString();
+
+    public static String checkDivision(String str) {
 
         char target = '.';
         int counter = 0;
+        String res = null;
 
         int len = str.length();
 
-        for(int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {
 
-            if(str.charAt(i) == target) {
+            if (str.charAt(i) == target) {
 
                 counter++;
 
@@ -714,8 +722,49 @@ public class MainActivity extends AppCompatActivity {
             //div = false;
             display.setText("Please enter in a valid number first.");
 
+        } else {
+            res = str;
+
+            display.setText("");
+
         }
-        return val1;
+
+        return res;
+
+    }
+
+    /** To perform the division operation
+     *
+     * @param val1 first operand
+     * @param val2 second operand
+     * @return the result of the operation as a String
+     */
+
+    public static String toDivision(double val1, double val2) {
+
+        double res;
+
+
+        if (val2 == 0) {
+
+            return "Cannot be divided by zero";
+
+        } else {
+
+            res = (double) (val1 / val2);
+            if (((int) res) == (res)) {
+
+                return Integer.toString((int) res);
+
+            } else {
+
+                return String.format("%.7g%n", res);
+
+            }
+
+        }
+
+
     }
 
     /**
