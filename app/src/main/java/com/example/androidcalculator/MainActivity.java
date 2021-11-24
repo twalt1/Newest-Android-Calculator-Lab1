@@ -5,7 +5,11 @@
  * 2. Added methods: addition, subtraction, multiplication, and division.
  * javac -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity.java
  * java -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity
- * @author Quoc Dat Phung 300164087, Jonathan Grobben 300190246, Tuna Bolukbasi 300185784, Zehan Li 300130533, Timothy Walters 300113350
+ * @author Quoc Dat Phung 300164087
+ * @author Jonathan Grobben 300190246
+ * @author Tuna Bolukbasi 300185784
+ * @author Zehan Li 300130533
+ * @author Timothy Walters 300113350
  * @version 1.02 (November 22, 2021)
  * @since version 1.01
  */
@@ -14,10 +18,11 @@ package com.example.androidcalculator;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * The Main Activity class
@@ -31,8 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
             btnEql, btnDec, btnAdd, btnSub, btnDiv;
+
     static TextView display;
-    boolean add, sub, mul, div, fin, firstAT, firstST;
+
+    boolean add, sub, mul, div, firstAT, firstST;
+
+    static boolean fin;
+
     double val1, val2;
 
     /**
@@ -70,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         sub = false;
         mul = false;
         div = false;
-        fin = false;
-
+        fin = true;
         //firstST = true;
         //firstAT = true;
 
@@ -283,10 +292,21 @@ public class MainActivity extends AppCompatActivity {
              * @param v Default view in Android Studio for the onClick method.
              */
             public void onClick(View v) {
-                val1 = MainActivity.this.addition();
-                val1 = Float.parseFloat(display.getText().toString());
-                add = true;
-                display.setText("");
+                if(fin == true) {
+                    display.setText("");
+                }
+                String str = checkAddition(display.getText().toString());
+                if(fin == true) {
+
+                    fin = false;
+
+                }
+                if(str != null) {
+
+                    val1 = Float.parseFloat(str);
+                    add = true;
+
+                }
             }
 
         });
@@ -300,65 +320,57 @@ public class MainActivity extends AppCompatActivity {
              * @param v Default view in Android Studio for the onClick method.
              */
             public void onClick(View v) {
-                val1 = MainActivity.this.subtraction();
-                val1 = Float.parseFloat(display.getText().toString());
-                sub = true;
-                display.setText("");
-            }
-        });
+                if(fin == true) {
+                    display.setText("");
+                }
+                String str = checkSubtraction(display.getText().toString());
+                //String s="false";
+                //if(fin == true) {
+                //    s = "true";
 
-        /**
-         * OnClickListener method to register user's input when the "multiplication" button is clicked on.
-         */
-        btnMul.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "multiplication" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
-            public void onClick(View v) {
-                val1 = MainActivity.this.multiplication();
-                val1 = Float.parseFloat(display.getText().toString());
-                mul = true;
-                display.setText("");
-            }
-        });
+                //}
+                //Toast.makeText(MainActivity.this,s, Toast.LENGTH_LONG).show();
+                if(fin == true) {
 
-        /**
-         * OnClickListener method to register user's input when the "divide" button is clicked on.
-         */
-        btnDiv.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "divide" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
-            public void onClick(View v) {
-                if(display.getText().toString() != null) {
+                    fin = false;
 
-                    val2 = Float.parseFloat(display.getText().toString());
+                }
+                if(str != null) {
 
-                    String toPrint = toDivision(val1, val2);
-
-                    if (toPrint != null) {
-
-                        display.setText(toPrint);
-
-                    }
-                }   else {
-
-                    display.setText("Please enter a number.");
+                    val1 = Float.parseFloat(str);
+                    sub = true;
 
                 }
             }
         });
 
-        /**
-         * OnClickListener method to register user's input when the "decimal" button is clicked on.
-         */
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String str = checkMultiplication(display.getText().toString());
+                if(str != null) {
+
+                    val1 = Float.parseFloat(str);
+                    mul = true;
+
+                }
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String str = checkDivision(display.getText().toString());
+                if(str != null) {
+
+                    val1 = Float.parseFloat(str);
+                    div = true;
+
+                }
+
+            }
+        });
+
         btnDec.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "decimal" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -373,14 +385,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * OnClickListener method to register user's input when the button "0" is clicked on.
-         */
         btn0.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "0" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -395,14 +400,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * OnClickListener method to register user's input when the "clear" button is clicked on.
-         */
         btnClr.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "clear" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
             public void onClick(View v) {
                 val1 = 0;
                 val2 = 0;
@@ -421,14 +419,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * OnClickListener method to register user's input when the "equals" button is clicked on.
-         */
         btnEql.setOnClickListener(new View.OnClickListener() {
-            /**
-             * OnClick method for the "equals" button.
-             * @param v Default view in Android Studio for the onClick method.
-             */
             public void onClick(View v) {
 
                 //String str = display.getText().toString();
@@ -479,97 +470,116 @@ public class MainActivity extends AppCompatActivity {
                 //}
 
                 float res;
-                char operator;
 
                 if (add == true) {
-                    operator = '+';
-                    val2 = Float.parseFloat(display.getText().toString());
 
-                    res = (float) mathEquals(val1, val2, operator);
+                    if(display.getText().toString() != null) {
 
-                    if (((int) res) == (res)) {
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                        display.setText(Integer.toString((int) res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        String toPrint = toAdd(val1, val2);
 
-                    } else {
+                        if (toPrint != null) {
 
-                        display.setText(String.format("%.7g%n", res));
-                        //val1 = 0;
-                        //val2 = 0;
+                            display.setText(toPrint);
+
+                        }
+                    }   else {
+
+                        display.setText("Please enter a number.");
 
                     }
+                    val1 = 0;
+                    val2 = 0;
+                    fin = true;
+                    add = false;
+                    sub = false;
+                    div = false;
+                    mul = false;
 
                 }
 
                 if (sub == true) {
-                    operator = '-';
-                    val2 = Float.parseFloat(display.getText().toString());
 
-                    res = (float) mathEquals(val1, val2, operator);
+                    if(display.getText().toString() != null) {
 
-                    if (((int) res) == (res)) {
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                        display.setText(Integer.toString((int) res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        String toPrint = toSub(val1, val2);
 
-                    } else {
+                        if (toPrint != null) {
 
-                        display.setText(String.format("%.7g%n", res));
-                        //val1 = 0;
-                        //val2 = 0;
+                            display.setText(toPrint);
+
+                        }
+                    }   else {
+
+                        display.setText("Please enter a number.");
 
                     }
+                    val1 = 0;
+                    val2 = 0;
+                    fin = true;
+                    add = false;
+                    sub = false;
+                    div = false;
+                    mul = false;
 
                 }
 
                 if (mul == true) {
-                    operator = '*';
-                    val2 = Float.parseFloat(display.getText().toString());
 
-                    res = (float) mathEquals(val1, val2, operator);
+                    if(display.getText().toString() != null) {
 
-                    if (((int) res) == (res)) {
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                        display.setText(Integer.toString((int) res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        String toPrint = toMul(val1, val2);
 
-                    } else {
+                        if (toPrint != null) {
 
-                        display.setText(String.format("%.7g%n", res));
-                        //val1 = 0;
-                        //val2 = 0;
+                            display.setText(toPrint);
+
+                        }
+                    }   else {
+
+                        display.setText("Please enter a number.");
 
                     }
+                    val1 = 0;
+                    val2 = 0;
+                    fin = true;
+                    add = false;
+                    sub = false;
+                    div = false;
+                    mul = false;
 
                 }
 
                 if (div == true) {
-                    operator = '/';
-                    val2 = Float.parseFloat(display.getText().toString());
 
-                    res = (float) mathEquals(val1, val2, operator);
+                    if(display.getText().toString() != null) {
 
-                    if (val2 == 0) {
-                        display.setText("Cannot divide by 0");
-                    }
+                        val2 = Float.parseFloat(display.getText().toString());
 
-                    if (((int) res) == (res)) {
+                        String toPrint = toDivision(val1, val2);
 
-                        display.setText(Integer.toString((int) res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        if (toPrint != null) {
 
-                    } else {
+                            display.setText(toPrint);
 
-                        display.setText(String.format("%.7g%n", res));
-                        //val1 = 0;
-                        //val2 = 0;
+                        }
+                    }   else {
+
+                        display.setText("Please enter a number.");
 
                     }
+                    val1 = 0;
+                    val2 = 0;
+                    fin = true;
+                    add = false;
+                    sub = false;
+                    div = false;
+                    mul = false;
 
                 }
 
@@ -587,14 +597,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Addition method
-     * @return the summation as a double
-     */
-    protected double addition(){
-        String str = display.getText().toString();
+    protected static String checkAddition(String str){
+        //String str = display.getText().toString();
         char target = '.';
         int counter = 0;
+
+        String res = null;
 
         int len = str.length();
 
@@ -608,34 +616,42 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
         if (str.equals("") || str == null) {
 
-            if (fin == true) {
+            //if (fin == true) {
 
-                fin = false;
+            //    fin = false;
 
-            }
+            //}
 
-            display.setText(display.getText() + "+");
-            //firstAT = false;
+            //if(fin == true) {
+                display.setText(display.getText() + "+");
+                //firstST = false;
+            //}
 
         }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
 
             display.setText("Please enter in a valid number first.");
 
+        }   else{
+
+            res = str;
+            //val1 = Float.parseFloat(display.getText().toString());
+            //add = true;
+            display.setText("");
+
         }
 
-        return val1;
+        return res;
     }
 
-    /**
-     * subtraction method
-     * @return the result as a double
-     */
-    protected double subtraction(){
-        String str = display.getText().toString();
+    protected static String checkSubtraction(String str){
+        //String str = display.getText().toString();
         char target = '.';
         int counter = 0;
+
+        String res = null;
 
         int len = str.length();
 
@@ -649,34 +665,40 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
         if (str.equals("") || str == null) {
 
-            if (fin == true) {
+            //if (fin == true) {
 
-                fin = false;
+            //    fin = false;
 
-            }
+            //}
 
-            display.setText(display.getText() + "-");
-            //firstST = false;
+
+                display.setText(display.getText() + "-");
+                //firstST = false;
 
         }   else if (str.equals("+") || str.equals(".") || str.equals("-") || str.equals("Please enter in a valid number first.") || counter > 1) {
 
             display.setText("Please enter in a valid number first.");
 
+        }   else {
+
+            res = str;
+            //val1 = Float.parseFloat(display.getText().toString());
+            //sub = true;
+            display.setText("");
+
         }
-        return val1;
+        return res;
     }
 
-    /**
-     * multiplication method
-     * @return the result as a double
-     */
-    protected double multiplication(){
-        String str = display.getText().toString();
+    protected static String checkMultiplication(String str){
 
         char target = '.';
         int counter = 0;
+        String res = null;
 
         int len = str.length();
 
@@ -695,17 +717,18 @@ public class MainActivity extends AppCompatActivity {
             //mul = false;
             display.setText("Please enter in a valid number first.");
 
+        }   else {
+
+            res = str;
+
+            //mul = true;
+            display.setText("");
+
         }
-        return val1;
+        return res;
     }
 
-    /** To check whether the division is performable
-     *
-     * @param str The input collected from the EditText
-     * @return a String that represents the number that is going to be calculated
-     */
-
-    public static String checkDivision(String str) {
+    protected static String checkDivision(String str) {
 
         char target = '.';
         int counter = 0;
@@ -746,7 +769,7 @@ public class MainActivity extends AppCompatActivity {
      * @return the result of the operation as a String
      */
 
-    public static String toDivision(double val1, double val2) {
+    protected static String toDivision(double val1, double val2) {
 
         double res;
 
@@ -773,24 +796,67 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * The method to calculate the addition, subtraction, multiplication, and division logic.
-     * @param val1 first operand
-     * @param val2 second operand
-     * @param operator identifies the operation to be performed
-     * @return the resulting value as a double
-     */
-    protected static double mathEquals(double val1, double val2, char operator){
-        double res = 0;
-        if (operator == '+'){
-            res = val1 + val2;
-        } else if (operator == '-'){
-            res = val1-val2;
-        } else if (operator == '*'){
-            res = val1*val2;
-        } else if (operator == '/'){
-            res = val1/val2;
-        }
-        return res;
+    protected static String toAdd(double val1, double val2) {
+
+        double res;
+
+
+
+            res = (double) (val1 + val2);
+            if (((int) res) == (res)) {
+
+                return Integer.toString((int) res);
+
+            } else {
+
+                return String.format("%.7g%n", res);
+
+            }
+
+
+
     }
+
+    protected static String toSub(double val1, double val2) {
+
+        double res;
+
+
+
+        res = (double) (val1 - val2);
+        if (((int) res) == (res)) {
+
+            return Integer.toString((int) res);
+
+        } else {
+
+            return String.format("%.7g%n", res);
+
+        }
+
+
+
+    }
+
+    protected static String toMul(double val1, double val2) {
+
+        double res;
+
+
+
+        res = (double) (val1 * val2);
+        if (((int) res) == (res)) {
+
+            return Integer.toString((int) res);
+
+        } else {
+
+            return String.format("%.7g%n", res);
+
+        }
+
+
+
+    }
+
 }
