@@ -5,11 +5,7 @@
  * 2. Added methods: addition, subtraction, multiplication, and division.
  * javac -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity.java
  * java -cp "junit-4.13.jar;hamcrest-core-1.3.jar;." MainActivity
- * @author Quoc Dat Phung 300164087
- * @author Jonathan Grobben 300190246
- * @author Tuna Bolukbasi 300185784
- * @author Zehan Li 300130533
- * @author Timothy Walters 300113350
+ * @author Quoc Dat Phung 300164087, Jonathan Grobben 300190246, Tuna Bolukbasi 300185784, Zehan Li 300130533, Timothy Walters 300113350
  * @version 1.02 (November 22, 2021)
  * @since version 1.01
  */
@@ -35,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnClr, btnMul,
     btnEql, btnDec, btnAdd, btnSub, btnDiv;
-
     TextView display;
-
     boolean add, sub, mul, div, fin, firstAT, firstST;
-
     double val1, val2;
 
     /**
@@ -314,7 +307,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "multiplication" button is clicked on.
+         */
         btnMul.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "multiplication" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 val1 = MainActivity.this.multiplication();
                 val1 = Float.parseFloat(display.getText().toString());
@@ -323,7 +323,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "divide" button is clicked on.
+         */
         btnDiv.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "divide" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 val1 = MainActivity.this.division();
                 val1 = Float.parseFloat(display.getText().toString());
@@ -332,7 +339,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "decimal" button is clicked on.
+         */
         btnDec.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "decimal" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -347,7 +361,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the button "0" is clicked on.
+         */
         btn0.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "0" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 String str = display.getText().toString();
 
@@ -362,7 +383,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "clear" button is clicked on.
+         */
         btnClr.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "clear" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
                 val1 = 0;
                 val2 = 0;
@@ -381,7 +409,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener method to register user's input when the "equals" button is clicked on.
+         */
         btnEql.setOnClickListener(new View.OnClickListener() {
+            /**
+             * OnClick method for the "equals" button.
+             * @param v Default view in Android Studio for the onClick method.
+             */
             public void onClick(View v) {
 
                 //String str = display.getText().toString();
@@ -540,6 +575,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Addition method
+     * @return the summation as a double
+     */
     protected double addition(){
         String str = display.getText().toString();
         char target = '.';
@@ -577,6 +616,10 @@ public class MainActivity extends AppCompatActivity {
         return val1;
     }
 
+    /**
+     * subtraction method
+     * @return the result as a double
+     */
     protected double subtraction(){
         String str = display.getText().toString();
         char target = '.';
@@ -613,6 +656,10 @@ public class MainActivity extends AppCompatActivity {
         return val1;
     }
 
+    /**
+     * multiplication method
+     * @return the result as a double
+     */
     protected double multiplication(){
         String str = display.getText().toString();
 
@@ -640,6 +687,10 @@ public class MainActivity extends AppCompatActivity {
         return val1;
     }
 
+    /**
+     * division method
+     * @return the result as a double
+     */
     protected double division(){
         String str = display.getText().toString();
 
@@ -668,6 +719,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected static double mathEquals(double val1, double val2, char operator){
+    /**
+     * The method to calculate the addition, subtraction, multiplication, and division logic.
+     * @param val1 first operand
+     * @param val2 second operand
+     * @param operator identifies the operation to be performed
+     * @return the resulting value as a double
+     */
+    protected double mathEquals(double val1, double val2, char operator){
         double res = 0;
         if (operator == '+'){
             res = val1 + val2;
